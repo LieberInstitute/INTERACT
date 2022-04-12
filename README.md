@@ -16,9 +16,9 @@ $python run_feature.py chr1
 
 Step 2. Pre-train DNAm prediction model using wgbs data.
 
-#Example
+
 ```bash
-pre-train a DNAm prediction model using four GPUs
+# Example pre-train a DNAm prediction model using four GPUs
 
 $CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer wgbs_methylation_regression \
 	--exp_name wgbs_methylation_regression \
