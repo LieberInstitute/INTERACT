@@ -10,7 +10,6 @@ Step 1. Compute features for each CpG site in the Illumina HumanMethylationEPIC 
 
 ```bash
 # compute features for chromosome 1 for the 84 samples of four different tissues (brain, blood, buccal and saliva).
-
 $python run_feature.py chr1
 
 ```
@@ -19,7 +18,6 @@ Step 2. Pre-train DNAm prediction model using wgbs data.
 
 ```bash
 # pre-train a DNAm prediction model using four GPUs
-
 $CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer wgbs_methylation_regression \
 	--exp_name wgbs_methylation_regression \
 	--batch_size 1024 \
@@ -39,7 +37,6 @@ Step 3. Fine-tune DNAm prediction model using epic array data. We trained one DN
 
 ```bash
 # fine-tuning DNAm prediction model for brain tissue using four GPUs
-
 $CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer array_methylation_regression \
 	--exp_name array_methylation_regression \
 	--batch_size 512 \
@@ -59,7 +56,6 @@ Step 4. Compute features for genome-wide CpG sites. read_variant.py computes two
 
 ```bash
 # compute features for CpG sites in the first chunk of chromosome 1
-
 $python read_variant.py chr1 0
 
 ```
@@ -67,7 +63,6 @@ Step 5. Predicts DNAm levels of CpG sites from DNA sequence with the reference a
 
 ```bash
 # predict DNAm levels of CpG sites in the chunk 0 of chromosome 1 using the trained brain-specific model
-
 CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer array_mQTL_regression \
 	--exp_name array_mQTL_regression \
 	--batch_size 1024 \
@@ -88,7 +83,6 @@ Step 6. Predicts DNAm levels of CpG sites from DNA sequence with the alternative
 
 ```bash
 # predict DNAm levels of CpG sites in chunk 0 of chromosome 1 using trained brain-specific model
-
 CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer array_mQTL_regression \
 	--exp_name array_mQTL_regression \
 	--batch_size 1024 \
@@ -109,15 +103,12 @@ Step 7. Predict DNAm regulatory variants. This script uses the predicted DNAm le
 
 ```bash
 # predict DNAm regulatory variants for fragment with index being 0 in chromosome 1
-
 $python Fine_mapping.py chr1 chr1_0
 
 # combine DNAm regulatory variants across chunks of chromosome 1
-
 $python Fine_mapping.py chr1
 
 # combine DNAm regulatory variants across chromosomes
-
 $python Fine_mapping.py
 
 ```
