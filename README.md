@@ -52,7 +52,7 @@ $CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transf
 	--model_config_file ./config/finetune/config.json \
 	--from_pretrained ./outputs/2kb_wgbs
 ```
-Step 4. Compute features for genome-wide CpG sites. read_variant.py computes two feature vectors for each CpG site, one from the DNA sequence with reference allele and the other from the DNA sequence with alternative allele. Due to memory limitation, read_variant.py splits each chromosome into chunks with length of 1000000 bp. Then read_variant.py computes features for all CpG sites in each chunk.
+Step 4. Compute features for genome-wide CpG sites. This script computes two feature vectors for each CpG site, one from the DNA sequence with reference allele and the other from the DNA sequence with alternative allele. Due to memory limitation, read_variant.py splits each chromosome into chunks with length of 1000000 bp. Then script computes features for all CpG sites in each chunk.
 
 ```bash
 # compute features for CpG sites in the first chunk of chromosome 1
