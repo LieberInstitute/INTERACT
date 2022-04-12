@@ -38,9 +38,9 @@ $CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transf
 
 Step 3. Fine-tune DNAm prediction model using epic array data. We trained one DNAm prediction model for each tissue in our study.  
 
-#Example
+
 ```bash
-fine-tuning the DNAm prediction model for brain tissue using four GPUs
+# Example fine-tuning the DNAm prediction model for brain tissue using four GPUs
 
 $CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer array_methylation_regression \
 	--exp_name array_methylation_regression \
@@ -58,17 +58,17 @@ $CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transf
 	--from_pretrained ./outputs/2kb_wgbs
 ```
 Step 4. Compute features for genome-wide CpG sites. read_variant.py computes two feature vectors for each CpG site, one from the DNA sequence with reference allele and the other from the DNA sequence with alternative allele. Due to memory limitation, read_variant.py splits each chromosome into chunks with length of 1000000 bp. Then read_variant.py computes features for all CpG sites in each chunk.
-#Example
+
 ```bash
-compute features for CpG sites in the first chunk of chromosome 1
+# Example compute features for CpG sites in the first chunk of chromosome 1
 
 $python read_variant.py chr1 0
 
 ```
 Step 5. Predicts DNAm levels of CpG sites from DNA sequence with the reference allele using trained brain-specific model.
-#Example
+
 ```bash
-predict DNAm levels of CpG sites in the chunk 0 of chromosome 1 using the trained brain-specific model
+# Example predict DNAm levels of CpG sites in the chunk 0 of chromosome 1 using the trained brain-specific model
 
 CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer array_mQTL_regression \
 	--exp_name array_mQTL_regression \
@@ -87,9 +87,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transfo
 	--split chr1_0
 ```
 Step 6. Predicts DNAm levels of CpG sites from DNA sequence with the alternative allele using trained brain-specific model.
-#Example
+
 ```bash
-predict DNAm levels of CpG sites in chunk 0 of chromosome 1 using trained brain-specific model
+# Example predict DNAm levels of CpG sites in chunk 0 of chromosome 1 using trained brain-specific model
 
 CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transformer array_mQTL_regression \
 	--exp_name array_mQTL_regression \
