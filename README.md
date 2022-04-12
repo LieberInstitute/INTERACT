@@ -108,17 +108,17 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch main.py transfo
 	--split chr1_0
 ```
 Step 7. Predict DNAm regulatory variants. This script uses the predicted DNAm levels of the reference allele and the alternative allele to compute the absolute difference of DNAm levels between the two alleles, and then computes the maximum effect for each snp among all its targeted CpG sites within a window of 2000 bps
-#Example
+
 ```bash
-predicts DNAm regulatory variants for fragment with index being 0 in chromosome 1
+# Example predicts DNAm regulatory variants for fragment with index being 0 in chromosome 1
 
 $python Fine_mapping.py chr1 chr1_0
 
-combines DNAm regulatory variants across chunks of chromosome
+# combines DNAm regulatory variants across chunks of chromosome
 
 $python Fine_mapping.py chr1
 
-combines DNAm regulatory variants across chromosomes
+# combines DNAm regulatory variants across chromosomes
 
 $python Fine_mapping.py
 
