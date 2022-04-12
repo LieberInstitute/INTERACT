@@ -8,8 +8,7 @@ Install PyTorch following instructions from https://pytorch.org/.  Use `pip inst
 
 Step 1. Compute features for each CpG site in the Illumina HumanMethylationEPIC (epic) array. CpG sites in chromsomes 1-20 are used as training dataset, whereas CpG sites in chromosome 21 and chromosome 22 are used as validation dataset and test dataset, respectively.
 
-# Example
-compute features for chromosome 1 for the 84 samples of four different tissues (brain, blood, buccal and saliva).
+# Example compute features for chromosome 1 for the 84 samples of four different tissues (brain, blood, buccal and saliva).
 ```bash
 $python run_feature.py chr1
 
