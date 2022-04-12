@@ -1,5 +1,5 @@
 #
-This repository contains code for predicting methylation regulatory variants in the human brain from sequence and training new sequence-based methylation model for any tissue with methylation profile.
+This repository contains code for predicting DNA methylation(DNAm) regulatory variants in the human brain from sequence and training new sequence-based methylation model for any tissue with methylation profile.
 
 ## Install
 Install PyTorch following instructions from https://pytorch.org/.  Use `pip install -r requirements.txt` to install the other dependencies.
