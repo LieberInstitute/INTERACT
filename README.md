@@ -10,6 +10,7 @@ Step 1. Compute features for each CpG site in the Illumina HumanMethylationEPIC 
 
 ```bash
 # Example compute features for chromosome 1 for the 84 samples of four different tissues (brain, blood, buccal and saliva).
+
 $python run_feature.py chr1
 
 ```
