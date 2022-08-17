@@ -1,8 +1,3 @@
-"""Implementation of a bucketed data sampler from PyTorch-NLP.
-Modified by Roshan Rao.
-
-See https://github.com/PetrochukM/PyTorch-NLP/
-"""
 import typing
 import math
 import operator
